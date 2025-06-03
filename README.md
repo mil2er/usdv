@@ -53,11 +53,8 @@ curl http://127.0.0.1:20002/api/eth/config -X GET -H "Content-Type: application/
 
 ## 地址余额查询
 
-- GET /api/[chain]/balanceOf/{contract}?address= 
+GET /api/[chain]/balanceOf/{contract}?address= 
 
-- cli
-
-    $ curl http://127.0.0.1:7001/api/eth/balanceOf/0x2fb07c66479cc5d45f8ca2db386b400453d78983?address=0x564dBD304d118014d6F07d75d2d159F52d8deA06 -X GET -H "Content-Type: application/json" | jq '.'
 
 - req
 
@@ -71,7 +68,9 @@ curl http://127.0.0.1:20002/api/eth/config -X GET -H "Content-Type: application/
 |  ----  | ----  | ----  |
 | balance  | String |  |
 
-```text
+```shell
+curl http://127.0.0.1:7001/api/eth/balanceOf/0x2fb07c66479cc5d45f8ca2db386b400453d78983?address=0x564dBD304d118014d6F07d75d2d159F52d8deA06 -X GET -H "Content-Type: application/json" | jq '.'
+
 {
   "code": 0,
   "data": {
