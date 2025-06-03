@@ -201,8 +201,10 @@ GET /console/transactions
 | txHash  | String |  |
 
 
-## /console/myTransactions 与我相关的交易查询(需要分页)
-- GET
+##  与我相关的交易查询(需要分页)
+
+GET /console/myTransactions
+
 - req
 
 |  arg name   | type  |
