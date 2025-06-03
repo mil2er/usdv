@@ -82,11 +82,7 @@ curl http://127.0.0.1:7001/api/eth/balanceOf/0x2fb07c66479cc5d45f8ca2db386b40045
 
 ## 授权额度查询
 
-- GET /api/[chain]/allowance/{contract}?owner=&spender=
-
-- cli
-
-    $ curl "http://127.0.0.1:7001/api/eth/allowance/0x2fb07c66479cc5d45f8ca2db386b400453d78983?owner=0x6625eE82631D9f8bba6cCeba123B341f4c748be8&spender=0x564dBD304d118014d6F07d75d2d159F52d8deA06" -X GET -H "Content-Type: application/json" | jq '.'
+GET /api/[chain]/allowance/{contract}?owner=&spender=
 
 - req
 
@@ -101,7 +97,9 @@ curl http://127.0.0.1:7001/api/eth/balanceOf/0x2fb07c66479cc5d45f8ca2db386b40045
 |  ----  | ----  | ----  |
 | allowance  | String |  |
 
-```text
+```shell
+curl "http://127.0.0.1:7001/api/eth/allowance/0x2fb07c66479cc5d45f8ca2db386b400453d78983?owner=0x6625eE82631D9f8bba6cCeba123B341f4c748be8&spender=0x564dBD304d118014d6F07d75d2d159F52d8deA06" -X GET -H "Content-Type: application/json" | jq '.'
+
 {
   "code": 0,
   "data": {
