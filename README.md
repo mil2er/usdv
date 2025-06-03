@@ -25,15 +25,9 @@ uri 统一前缀 /api/[chain]
 
 - GET /api/[chain]/config
 
-- cli
+```shell
+curl http://127.0.0.1:20002/api/eth/config -X GET -H "Content-Type: application/json" | jq '.'
 
-    $ curl http://127.0.0.1:20002/api/eth/config -X GET -H "Content-Type: application/json" | jq '.'
-
-- req
-
-- return
-
-```text
 {
   "code": 0,
   "data": {
