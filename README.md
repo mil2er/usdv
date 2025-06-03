@@ -8,8 +8,8 @@ uri 统一前缀 /api/[chain]
 
 |  chain | uri |
 |  ---- | ---- |
-| 以太坊 | /api/eth/... |
-| 波场 | /api/tron/... |
+| 以太坊 | /api/eth |
+| 波场 | /api/tron |
 
 ## 响应体
 
