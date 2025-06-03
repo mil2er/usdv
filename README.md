@@ -1,0 +1,278 @@
+
+# 接口文档说明
+
+- uri 统一前缀 /api/[chain]
+
+|  chain | uri |
+|  ---- | ---- |
+| 以太坊 | /api/eth/... |
+| 波场 | /api/tron/... |
+
+- 返回消息体，后面文档只写 data 部分。 
+
+|  name   | type  | memo |
+|  ----  | ----  | ----  |
+| code  | String | 状态码 0成功 其它均为错误码 |
+| message | String | 说明消息 |
+| data  | String or Map | 业务数据 |
+
+## /api/[chain]/config 静态初始化配置数据读取接口
+
+- GET
+
+- cli
+
+    $ curl http://127.0.0.1:20002/api/eth/config -X GET -H "Content-Type: application/json" | jq '.'
+
+- req
+
+- return
+
+```text
+{
+  "code": 0,
+  "data": {
+    "coin_name": "ETH_USDV",
+    "name": "USD Vault",
+    "symbol": "USDV",
+    "address": "0x2fb07c66479cc5d45f8ca2db386b400453d78983",
+    "decimals": 6,
+    "chain": "ETHEREUM",
+    "network": "sepolia",
+    "BLACKLIST_ADMIN_ROLE": "0x750555ed2187fef9a15b1b2d80b65634c266437a86c68f049ea8b5da4a2bd96d",
+    "BLACKLIST_ROLE": "0x22435ed027edf5f902dc0093fbc24cdb50c05b5fd5f311b78c67c1cbaff60e13",
+    "DEFAULT_ADMIN_ROLE": "0x1effbbff9c66c5e59634f24fe842750c60d18891155c32dd155fc2d661a4c86d",
+    "DOMAIN_SEPARATOR": "0x5dae01a50c13cd5552b17e2e742678152a2bd272063ae85218fa1cda91353a79",
+    "MINTER_ROLE": "0x9f2df0fed2c77648de5860a4cc508cd0818c85b8b8a1ab4ceeef8d981c8956a6",
+    "PAUSER_ROLE": "0x65d7a28e3265b37a6474929f336521b332c1681b933f6cb9f3376673440d862a",
+    "UPGRADER_ROLE": "0x189ab7a9244df0848122154315af71fe140f3db0fe014031783b0946b8c9d2e3",
+    "UPGRADE_INTERFACE_VERSION": "0x56c66b2cbf206f146f5fb80dadf1a855a6a375d07396966e8f1fa6b03f61023a"
+  },
+  "message": "success"
+}
+```
+
+## /api/[chain]/balanceOf/{contract}?address= 地址余额查询
+- GET
+
+- cli
+
+    $ curl http://127.0.0.1:7001/api/eth/balanceOf/0x2fb07c66479cc5d45f8ca2db386b400453d78983?address=0x564dBD304d118014d6F07d75d2d159F52d8deA06 -X GET -H "Content-Type: application/json" | jq '.'
+
+- req
+
+|  arg name   | type  |
+|  ----  | ----  |
+| address  | String |
+
+- return 
+
+|  name   | type  | memo |
+|  ----  | ----  | ----  |
+| balance  | String |  |
+
+```text
+{
+  "code": 0,
+  "data": {
+    "balance": "300999989"
+  },
+  "message": "success"
+}
+```
+
+## /api/[chain]/allowance/{contract}?owner=&spender= 授权额度查询
+- GET
+
+- cli
+
+    $ curl "http://127.0.0.1:7001/api/eth/allowance/0x2fb07c66479cc5d45f8ca2db386b400453d78983?owner=0x6625eE82631D9f8bba6cCeba123B341f4c748be8&spender=0x564dBD304d118014d6F07d75d2d159F52d8deA06" -X GET -H "Content-Type: application/json" | jq '.'
+
+- req
+
+|  arg name   | type  |
+|  ----  | ----  |
+| owner  | String |
+| spender | String |
+
+- return 
+
+|  name   | type  | memo |
+|  ----  | ----  | ----  |
+| allowance  | String |  |
+
+```text
+{
+  "code": 0,
+  "data": {
+    "allowance": "9876555"
+  },
+  "message": "success"
+}
+```
+
+## /api/[chain]/broadcasttx 广播交易
+- POST
+- request body
+
+|  arg name   | type  |
+|  ----  | ----  |
+| signed tx_data  | String(json) |
+
+tx_data 示例：
+```json
+{
+  "raw_data": {
+    "contract": [
+      {
+        "parameter": {
+          "value": {
+            "amount": 1000,
+            "owner_address": "41608f8da72479edc7dd921e4c30bb7e7cddbe722e",
+            "to_address": "41e9d79cc47518930bc322d9bf7cddd260a0260a8d"
+          },
+          "type_url": "type.googleapis.com/protocol.TransferContract"
+        },
+        "type": "TransferContract"
+      }
+    ],
+    "ref_block_bytes": "5e4b",
+    "ref_block_hash": "47c9dc89341b300d",
+    "expiration": 1591089627000,
+    "timestamp": 1591089567635
+  },
+  "raw_data_hex": "0a025e4b220847c9dc89341b300d40f8fed3a2a72e5a66080112620a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412310a1541608f8da72479edc7dd921e4c30bb7e7cddbe722e121541e9d79cc47518930bc322d9bf7cddd260a0260a8d18e8077093afd0a2a72e"
+}
+```
+
+- return List分页显示
+
+|  name   | type  | memo |
+|  ----  | ----  | ----  |
+| txId  | String |  |
+
+## /console/login 登录
+- GET
+- req
+
+|  arg name   | type  |
+|  ----  | ----  |
+| userName  | String |
+| passWord  | String |
+| verifyCode  | String（谷歌验证需加绑定接口，手机或邮件验证需加发送验证码接口） |
+
+- return
+
+## /console/info 基本信息
+- GET
+- req
+
+|  arg name   | type  |
+|  ----  | ----  |
+| chain  | String(tron or eth) |
+
+
+- return
+
+|  name   | type  | memo |
+|  ----  | ----  | ----  |
+| totalSupply  | String| |
+| circulatingSupply  | String| 流通供应量|
+| marketCap  | String| 市值 |
+| circulatingMarketCap  | String| 流通市值|
+| contract  | String| 合约地址 |
+| issuer  | String| 发行方 |
+| issuingTime  | String| |
+| decimal  | String| 小数点位数 |
+| holders  | String | 持币地址数 |
+| cumulativeTransfers  | String | 累计转账次数 |
+| yesterdayTransfers  | String|  昨日转账次数|
+| yesterdaytradingVolume  | String|  昨日交易量|
+
+## /console/transactions 交易查询(需要分页)
+- GET
+- req
+
+|  arg name   | type  |
+|  ----  | ----  |
+| chain  | String(tron or eth) |
+| status  | String(ALL Pending Signed Failed Success) |
+
+
+- return List分页显示
+
+参考 https://app.safe.global/transactions/history?safe=sep:0xd1Bacd07414C51aA16f4480B80f65a51d67D8fEe
+|  name   | type  | memo |
+|  ----  | ----  | ----  |
+| txType  | String | mint burn transfer... |
+| status  | String |  |
+| txHash  | String |  |
+
+
+## /console/myTransactions 与我相关的交易查询(需要分页)
+- GET
+- req
+
+|  arg name   | type  |
+|  ----  | ----  |
+| chain  | String(tron or eth) |
+| status  | String(ToSign Pending Signed Failed Success) |
+
+
+- return List分页显示
+
+参考 https://app.safe.global/transactions/history?safe=sep:0xd1Bacd07414C51aA16f4480B80f65a51d67D8fEe
+|  name   | type  | memo |
+|  ----  | ----  | ----  |
+| txType  | String | mint burn transfer... |
+| status  | String |  |
+| txHash  | String |  |
+
+## /console/statistic/circulatingSupply 流通供应量统计
+- GET
+- req
+
+|  arg name   | type  |
+|  ----  | ----  |
+| chain  | String(tron or eth) |
+
+
+- return 最长30数组
+
+|  name   | type  | memo |
+|  ----  | ----  | ----  |
+| day  | String | 日期 |
+| circulatingSupply  | Int | 当日流通供应量|
+
+## /console/statistic/transfers 转账次数统计
+- GET
+- req
+
+|  arg name   | type  |
+|  ----  | ----  |
+| chain  | String(tron or eth) |
+
+
+- return 最长30数组
+
+|  name   | type  | memo |
+|  ----  | ----  | ----  |
+| day  | String | 日期 |
+| transfers  | Int | 当日转账次数|
+
+## /console/statistic/holders 持币地址统计
+- GET
+- req
+
+|  arg name   | type  |
+|  ----  | ----  |
+| chain  | String(tron or eth) |
+
+
+- return 最长30数组
+
+|  name   | type  | memo |
+|  ----  | ----  | ----  |
+| day  | String | 日期 |
+| holders  | Int | 持币地址数 |
+
