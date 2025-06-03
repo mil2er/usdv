@@ -1,14 +1,19 @@
 
 # 接口文档说明
 
-- uri 统一前缀 /api/[chain]
+
+## 请求路径
+
+uri 统一前缀 /api/[chain]
 
 |  chain | uri |
 |  ---- | ---- |
 | 以太坊 | /api/eth/... |
 | 波场 | /api/tron/... |
 
-- 返回消息体，后面文档只写 data 部分。 
+## 响应体
+
+返回消息体，后面文档只写 data 部分
 
 |  name   | type  | memo |
 |  ----  | ----  | ----  |
