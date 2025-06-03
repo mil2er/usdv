@@ -151,8 +151,10 @@ tx_data 示例：
 | txId  | String |  |
 
 
-## /console/info 基本信息
-- GET
+##  基本信息
+
+GET /console/info
+
 - req
 
 |  arg name   | type  |
@@ -177,8 +179,10 @@ tx_data 示例：
 | yesterdayTransfers  | String|  昨日转账次数|
 | yesterdaytradingVolume  | String|  昨日交易量|
 
-## /console/transactions 交易查询(需要分页)
-- GET
+## 交易查询(需要分页)
+
+GET /console/transactions
+
 - req
 
 |  arg name   | type  |
@@ -216,8 +220,10 @@ tx_data 示例：
 | status  | String |  |
 | txHash  | String |  |
 
-## /console/statistic/circulatingSupply 流通供应量统计
-- GET
+##  流通供应量统计
+
+GET /console/statistic/circulatingSupply
+
 - req
 
 |  arg name   | type  |
@@ -232,8 +238,10 @@ tx_data 示例：
 | day  | String | 日期 |
 | circulatingSupply  | Int | 当日流通供应量|
 
-## /console/statistic/transfers 转账次数统计
-- GET
+##  转账次数统计
+
+GET /console/statistic/transfers
+
 - req
 
 |  arg name   | type  |
@@ -248,14 +256,15 @@ tx_data 示例：
 | day  | String | 日期 |
 | transfers  | Int | 当日转账次数|
 
-## /console/statistic/holders 持币地址统计
-- GET
+## 持币地址统计
+
+GET /console/statistic/holders
+
 - req
 
 |  arg name   | type  |
 |  ----  | ----  |
 | chain  | String(tron or eth) |
-
 
 - return 最长30数组
 
