@@ -23,7 +23,7 @@ uri 统一前缀 /api/[chain]
 
 ## 静态初始化配置数据读取接口
 
-- GET /api/[chain]/config
+GET /api/[chain]/config
 
 ```shell
 curl http://127.0.0.1:20002/api/eth/config -X GET -H "Content-Type: application/json" | jq '.'
