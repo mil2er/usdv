@@ -16,9 +16,9 @@
 | message | String | 说明消息 |
 | data  | String or Map | 业务数据 |
 
-## /api/[chain]/config 静态初始化配置数据读取接口
+## 静态初始化配置数据读取接口
 
-- GET
+- GET /api/[chain]/config
 
 - cli
 
@@ -52,8 +52,9 @@
 }
 ```
 
-## /api/[chain]/balanceOf/{contract}?address= 地址余额查询
-- GET
+## 地址余额查询
+
+- GET /api/[chain]/balanceOf/{contract}?address= 
 
 - cli
 
@@ -81,8 +82,9 @@
 }
 ```
 
-## /api/[chain]/allowance/{contract}?owner=&spender= 授权额度查询
-- GET
+## 授权额度查询
+
+- GET /api/[chain]/allowance/{contract}?owner=&spender=
 
 - cli
 
@@ -111,8 +113,9 @@
 }
 ```
 
-## /api/[chain]/broadcasttx 广播交易
-- POST
+## 广播交易
+
+- POST /api/[chain]/broadcasttx 
 - request body
 
 |  arg name   | type  |
@@ -151,17 +154,6 @@ tx_data 示例：
 |  ----  | ----  | ----  |
 | txId  | String |  |
 
-## /console/login 登录
-- GET
-- req
-
-|  arg name   | type  |
-|  ----  | ----  |
-| userName  | String |
-| passWord  | String |
-| verifyCode  | String（谷歌验证需加绑定接口，手机或邮件验证需加发送验证码接口） |
-
-- return
 
 ## /console/info 基本信息
 - GET
