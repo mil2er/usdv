@@ -206,6 +206,32 @@ GET /api/[chain]/info
 | yesterdayTransfers  | String|  昨日转账次数|
 | yesterdaytradingVolume  | String|  昨日交易量|
 
+```shell
+curl -X GET http://127.0.0.1:20002/api/eth/info     -H "Accept: application/json"     -H "content-type: application/json"
+
+{
+  "code": 0,
+  "data": {
+    "circulatingMarketCap": "100000000000000",
+    "circulatingSupply": "100000000000000",
+    "contract": "100000000000000",
+    "cumulativeTransfers": "100000000000000",
+    "decimal": "100000000000000",
+    "holders": "100000000000000",
+    "issuer": "100000000000000",
+    "issuingTime": "100000000000000",
+    "marketCap": "100000000000000",
+    "tag": "sample",
+    "totalSupply": "100000000000000",
+    "yesterdayTransfers": "100000000000000",
+    "yesterdaytradingVolume": "100000000000000"
+  },
+  "message": "success"
+}
+
+curl -X GET http://127.0.0.1:20002/api/tron/info     -H "Accept: application/json"     -H "content-type: application/json"
+```
+
 ## 交易查询(需要分页)
 
 GET /console/transactions
