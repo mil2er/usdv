@@ -115,31 +115,31 @@ curl "http://127.0.0.1:7001/api/eth/allowance/0x2fb07c66479cc5d45f8ca2db386b4004
 
 ## 创建多签交易
 
-POST /safe/safes/{address}/multisig-transactions/
+POST /api/[chain]/safe/safes/{address}/multisig-transactions/
 
 ## 查询多签交易列表
 
-GET /safe/safes/{address}/multisig-transactions/
+GET /api/[chain]/safe/safes/{address}/multisig-transactions/
 
 ## 估算多签交易费用
 
-POST /safe/safes/{address}/multisig-transactions/estimations/
+POST /api/[chain]/safe/safes/{address}/multisig-transactions/estimations/
 
 ## 删除队列中的多签交易
 
-DELETE /safe/multisig-transactions/{txhash}/
+DELETE /api/[chain]/safe/multisig-transactions/{txhash}/
 
 ## 查询多签交易信息
 
-GET /safe/multisig-transactions/{txhash}/
+GET /api/[chain]/safe/multisig-transactions/{txhash}/
 
 ## 确认多签交易
 
-POST /safe/multisig-transactions/{txhash}/confirmations/
+POST /api/[chain]/safe/multisig-transactions/{txhash}/confirmations/
 
 ## 查询多签交易确认列表
 
-GET /safe/multisig-transactions/{txhash}/confirmations/
+GET /api/[chain]/safe/multisig-transactions/{txhash}/confirmations/
 
 ## 广播交易
 
@@ -185,14 +185,9 @@ tx_data 示例：
 
 ##  基本信息
 
-GET /console/info
+GET /api/[chain]/info
 
 - req
-
-|  arg name   | type  |
-|  ----  | ----  |
-| chain  | String(tron or eth) |
-
 
 - return
 
