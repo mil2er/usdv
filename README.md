@@ -240,7 +240,8 @@ GET /api/[chain]/transactions
 
 |  arg name   | type  |
 |  ----  | ----  |
-| chain  | String(tron or eth) |
+| page  | int |
+| size  | int |
 | status  | String(ALL Pending Signed Failed Success) |
 
 
@@ -253,6 +254,31 @@ GET /api/[chain]/transactions
 | status  | String |  |
 | txHash  | String |  |
 
+```shell
+curl -X GET http://127.0.0.1:20002/api/eth/transactions     -H "Accept: application/json"     -H "content-type: application/json"
+
+{
+  "code": 0,
+  "data": [
+    {
+      "status": "success",
+      "txHash": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+      "txType": "transfer"
+    },
+    {
+      "status": "success",
+      "txHash": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+      "txType": "transfer"
+    },
+    {
+      "status": "success",
+      "txHash": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+      "txType": "transfer"
+    }
+  ],
+  "message": "success"
+}
+```
 
 ##  与我相关的交易查询(需要分页)
 
@@ -262,7 +288,8 @@ GET /api/[chain]/myTransactions
 
 |  arg name   | type  |
 |  ----  | ----  |
-| chain  | String(tron or eth) |
+| page  | int |
+| size  | int |
 | status  | String(ToSign Pending Signed Failed Success) |
 
 
@@ -275,23 +302,57 @@ GET /api/[chain]/myTransactions
 | status  | String |  |
 | txHash  | String |  |
 
+```shell
+curl -X GET http://127.0.0.1:20002/stable/eth/myTransactions/0x000     -H "Accept: application/json"     -H "content-type: application/json"
+
+{
+  "code": 0,
+  "data": [
+    {
+      "status": "success",
+      "txHash": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+      "txType": "transfer"
+    },
+    {
+      "status": "success",
+      "txHash": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+      "txType": "transfer"
+    },
+    {
+      "status": "success",
+      "txHash": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+      "txType": "transfer"
+    }
+  ],
+  "message": "success"
+}
+```
+
 ##  流通供应量统计
 
 GET /api/[chain]/statistic/circulatingSupply
 
 - req
 
-|  arg name   | type  |
-|  ----  | ----  |
-| chain  | String(tron or eth) |
-
-
 - return 最长30数组
 
 |  name   | type  | memo |
 |  ----  | ----  | ----  |
 | day  | String | 日期 |
-| circulatingSupply  | Int | 当日流通供应量|
+| circulatingSupply  | String | 当日流通供应量|
+
+```shell
+curl -X GET http://127.0.0.1:20002/stable/eth/statistic/circulatingSupply     -H "Accept: application/json"     -H "content-type: application/json"
+
+{
+  "code": 0,
+  "data": {
+    "circulatingSupply": "100000000000000",
+    "day": "2025-01-01"
+  },
+  "message": "success"
+}
+```
 
 ##  转账次数统计
 
@@ -299,17 +360,25 @@ GET /api/[chain]/statistic/transfers
 
 - req
 
-|  arg name   | type  |
-|  ----  | ----  |
-| chain  | String(tron or eth) |
-
-
 - return 最长30数组
 
 |  name   | type  | memo |
 |  ----  | ----  | ----  |
 | day  | String | 日期 |
-| transfers  | Int | 当日转账次数|
+| transfers  | String | 当日转账次数|
+
+```shell
+curl -X GET http://127.0.0.1:20002/stable/eth/statistic/transfers     -H "Accept: application/json"     -H "content-type: application/json"
+
+{
+  "code": 0,
+  "data": {
+    "day": "2025-01-01",
+    "transfers": "100000000000000"
+  },
+  "message": "success"
+}
+```
 
 ## 持币地址统计
 
@@ -317,14 +386,22 @@ GET /api/[chain]/statistic/holders
 
 - req
 
-|  arg name   | type  |
-|  ----  | ----  |
-| chain  | String(tron or eth) |
-
 - return 最长30数组
 
 |  name   | type  | memo |
 |  ----  | ----  | ----  |
 | day  | String | 日期 |
-| holders  | Int | 持币地址数 |
+| holders  | String | 持币地址数 |
 
+```shell
+curl -X GET http://127.0.0.1:20002/stable/eth/statistic/holders     -H "Accept: application/json"     -H "content-type: application/json"
+
+{
+  "code": 0,
+  "data": {
+    "day": "2025-01-01",
+    "holders": "100000000000000"
+  },
+  "message": "success"
+}
+```
