@@ -303,7 +303,7 @@ GET /api/[chain]/myTransactions
 | txHash  | String |  |
 
 ```shell
-curl -X GET http://127.0.0.1:20002/stable/eth/myTransactions/0x000     -H "Accept: application/json"     -H "content-type: application/json"
+curl -X GET http://127.0.0.1:20002/api/eth/myTransactions/0x000     -H "Accept: application/json"     -H "content-type: application/json"
 
 {
   "code": 0,
@@ -342,7 +342,7 @@ GET /api/[chain]/statistic/circulatingSupply
 | circulatingSupply  | String | 当日流通供应量|
 
 ```shell
-curl -X GET http://127.0.0.1:20002/stable/eth/statistic/circulatingSupply     -H "Accept: application/json"     -H "content-type: application/json"
+curl -X GET http://127.0.0.1:20002/api/eth/statistic/circulatingSupply     -H "Accept: application/json"     -H "content-type: application/json"
 
 {
   "code": 0,
@@ -368,7 +368,7 @@ GET /api/[chain]/statistic/transfers
 | transfers  | String | 当日转账次数|
 
 ```shell
-curl -X GET http://127.0.0.1:20002/stable/eth/statistic/transfers     -H "Accept: application/json"     -H "content-type: application/json"
+curl -X GET http://127.0.0.1:20002/api/eth/statistic/transfers     -H "Accept: application/json"     -H "content-type: application/json"
 
 {
   "code": 0,
@@ -394,7 +394,7 @@ GET /api/[chain]/statistic/holders
 | holders  | String | 持币地址数 |
 
 ```shell
-curl -X GET http://127.0.0.1:20002/stable/eth/statistic/holders     -H "Accept: application/json"     -H "content-type: application/json"
+curl -X GET http://127.0.0.1:20002/api/eth/statistic/holders     -H "Accept: application/json"     -H "content-type: application/json"
 
 {
   "code": 0,
