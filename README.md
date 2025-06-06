@@ -234,7 +234,7 @@ curl -X GET http://127.0.0.1:20002/api/tron/info     -H "Accept: application/jso
 
 ## 交易查询(需要分页)
 
-GET /console/transactions
+GET /api/[chain]/transactions
 
 - req
 
@@ -256,7 +256,7 @@ GET /console/transactions
 
 ##  与我相关的交易查询(需要分页)
 
-GET /console/myTransactions
+GET /api/[chain]/myTransactions
 
 - req
 
@@ -277,7 +277,7 @@ GET /console/myTransactions
 
 ##  流通供应量统计
 
-GET /console/statistic/circulatingSupply
+GET /api/[chain]/statistic/circulatingSupply
 
 - req
 
@@ -295,7 +295,7 @@ GET /console/statistic/circulatingSupply
 
 ##  转账次数统计
 
-GET /console/statistic/transfers
+GET /api/[chain]/statistic/transfers
 
 - req
 
@@ -313,7 +313,7 @@ GET /console/statistic/transfers
 
 ## 持币地址统计
 
-GET /console/statistic/holders
+GET /api/[chain]/statistic/holders
 
 - req
 
