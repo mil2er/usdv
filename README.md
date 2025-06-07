@@ -109,6 +109,38 @@ curl "http://127.0.0.1:7001/api/eth/allowance/0x2fb07c66479cc5d45f8ca2db386b4004
 }
 ```
 
+## Safe 官方API 服务
+
+[https://docs.safe.global/core-api/transaction-service-reference/sepolia#Transactions](https://docs.safe.global/core-api/transaction-service-reference/sepolia#Transactions)
+
+## 创建多签交易
+
+POST /api/[chain]/safe/safes/{address}/multisig-transactions/
+
+## 查询多签交易列表
+
+GET /api/[chain]/safe/safes/{address}/multisig-transactions/
+
+## 估算多签交易费用
+
+POST /api/[chain]/safe/safes/{address}/multisig-transactions/estimations/
+
+## 删除队列中的多签交易
+
+DELETE /api/[chain]/safe/multisig-transactions/{txhash}/
+
+## 查询多签交易信息
+
+GET /api/[chain]/safe/multisig-transactions/{txhash}/
+
+## 确认多签交易
+
+POST /api/[chain]/safe/multisig-transactions/{txhash}/confirmations/
+
+## 查询多签交易确认列表
+
+GET /api/[chain]/safe/multisig-transactions/{txhash}/confirmations/
+
 ## 广播交易
 
 - POST /api/[chain]/broadcasttx 
@@ -153,14 +185,9 @@ tx_data 示例：
 
 ##  基本信息
 
-GET /console/info
+GET /api/[chain]/info
 
 - req
-
-|  arg name   | type  |
-|  ----  | ----  |
-| chain  | String(tron or eth) |
-
 
 - return
 
@@ -179,15 +206,42 @@ GET /console/info
 | yesterdayTransfers  | String|  昨日转账次数|
 | yesterdaytradingVolume  | String|  昨日交易量|
 
+```shell
+curl -X GET http://127.0.0.1:20002/api/eth/info     -H "Accept: application/json"     -H "content-type: application/json"
+
+{
+  "code": 0,
+  "data": {
+    "circulatingMarketCap": "100000000000000",
+    "circulatingSupply": "100000000000000",
+    "contract": "100000000000000",
+    "cumulativeTransfers": "100000000000000",
+    "decimal": "100000000000000",
+    "holders": "100000000000000",
+    "issuer": "100000000000000",
+    "issuingTime": "100000000000000",
+    "marketCap": "100000000000000",
+    "tag": "sample",
+    "totalSupply": "100000000000000",
+    "yesterdayTransfers": "100000000000000",
+    "yesterdaytradingVolume": "100000000000000"
+  },
+  "message": "success"
+}
+
+curl -X GET http://127.0.0.1:20002/api/tron/info     -H "Accept: application/json"     -H "content-type: application/json"
+```
+
 ## 交易查询(需要分页)
 
-GET /console/transactions
+GET /api/[chain]/transactions
 
 - req
 
 |  arg name   | type  |
 |  ----  | ----  |
-| chain  | String(tron or eth) |
+| page  | int |
+| size  | int |
 | status  | String(ALL Pending Signed Failed Success) |
 
 
@@ -200,16 +254,42 @@ GET /console/transactions
 | status  | String |  |
 | txHash  | String |  |
 
+```shell
+curl -X GET http://127.0.0.1:20002/api/eth/transactions     -H "Accept: application/json"     -H "content-type: application/json"
+
+{
+  "code": 0,
+  "data": [
+    {
+      "status": "success",
+      "txHash": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+      "txType": "transfer"
+    },
+    {
+      "status": "success",
+      "txHash": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+      "txType": "transfer"
+    },
+    {
+      "status": "success",
+      "txHash": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+      "txType": "transfer"
+    }
+  ],
+  "message": "success"
+}
+```
 
 ##  与我相关的交易查询(需要分页)
 
-GET /console/myTransactions
+GET /api/[chain]/myTransactions
 
 - req
 
 |  arg name   | type  |
 |  ----  | ----  |
-| chain  | String(tron or eth) |
+| page  | int |
+| size  | int |
 | status  | String(ToSign Pending Signed Failed Success) |
 
 
@@ -222,56 +302,136 @@ GET /console/myTransactions
 | status  | String |  |
 | txHash  | String |  |
 
+```shell
+curl -X GET http://127.0.0.1:20002/api/eth/myTransactions/0x000     -H "Accept: application/json"     -H "content-type: application/json"
+
+{
+  "code": 0,
+  "data": [
+    {
+      "status": "success",
+      "txHash": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+      "txType": "transfer"
+    },
+    {
+      "status": "success",
+      "txHash": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+      "txType": "transfer"
+    },
+    {
+      "status": "success",
+      "txHash": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+      "txType": "transfer"
+    }
+  ],
+  "message": "success"
+}
+```
+
 ##  流通供应量统计
 
-GET /console/statistic/circulatingSupply
+GET /api/[chain]/statistic/circulatingSupply
 
 - req
-
-|  arg name   | type  |
-|  ----  | ----  |
-| chain  | String(tron or eth) |
-
 
 - return 最长30数组
 
 |  name   | type  | memo |
 |  ----  | ----  | ----  |
 | day  | String | 日期 |
-| circulatingSupply  | Int | 当日流通供应量|
+| circulatingSupply  | String | 当日流通供应量|
+
+```shell
+curl -X GET http://127.0.0.1:20002/api/eth/statistic/circulatingSupply     -H "Accept: application/json"     -H "content-type: application/json"
+
+{
+  "code": 0,
+  "data": [
+    {
+      "day": "2025-01-01",
+      "circulatingSupply": "100000000000"
+    },
+    {
+      "day": "2025-01-02",
+      "circulatingSupply": "200000000000"
+    },
+    {
+      "day": "2025-01-03",
+      "circulatingSupply": "400000000000"
+    }
+  ],
+  "message": "success"
+}
+```
 
 ##  转账次数统计
 
-GET /console/statistic/transfers
+GET /api/[chain]/statistic/transfers
 
 - req
-
-|  arg name   | type  |
-|  ----  | ----  |
-| chain  | String(tron or eth) |
-
 
 - return 最长30数组
 
 |  name   | type  | memo |
 |  ----  | ----  | ----  |
 | day  | String | 日期 |
-| transfers  | Int | 当日转账次数|
+| transfers  | String | 当日转账次数|
+
+```shell
+curl -X GET http://127.0.0.1:20002/api/eth/statistic/transfers     -H "Accept: application/json"     -H "content-type: application/json"
+
+{
+  "code": 0,
+  "data": [
+    {
+      "day": "2025-01-01",
+      "transfers": "100000000000"
+    },
+    {
+      "day": "2025-01-02",
+      "transfers": "200000000000"
+    },
+    {
+      "day": "2025-01-03",
+      "transfers": "400000000000"
+    }
+  ],
+  "message": "success"
+}
+```
 
 ## 持币地址统计
 
-GET /console/statistic/holders
+GET /api/[chain]/statistic/holders
 
 - req
-
-|  arg name   | type  |
-|  ----  | ----  |
-| chain  | String(tron or eth) |
 
 - return 最长30数组
 
 |  name   | type  | memo |
 |  ----  | ----  | ----  |
 | day  | String | 日期 |
-| holders  | Int | 持币地址数 |
+| holders  | String | 持币地址数 |
 
+```shell
+curl -X GET http://127.0.0.1:20002/api/eth/statistic/holders     -H "Accept: application/json"     -H "content-type: application/json"
+
+{
+  "code": 0,
+  "data": [
+    {
+      "day": "2025-01-01",
+      "holders": "100000000000"
+    },
+    {
+      "day": "2025-01-02",
+      "holders": "200000000000"
+    },
+    {
+      "day": "2025-01-03",
+      "holders": "400000000000"
+    }
+  ],
+  "message": "success"
+}
+```
