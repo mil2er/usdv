@@ -31,21 +31,24 @@ curl http://127.0.0.1:20002/api/eth/config -X GET -H "Content-Type: application/
 {
   "code": 0,
   "data": {
-    "coin_name": "ETH_USDV",
-    "name": "USD Vault",
-    "symbol": "USDV",
-    "address": "0x2fb07c66479cc5d45f8ca2db386b400453d78983",
-    "decimals": 6,
-    "chain": "ETHEREUM",
-    "network": "sepolia",
-    "BLACKLIST_ADMIN_ROLE": "0x750555ed2187fef9a15b1b2d80b65634c266437a86c68f049ea8b5da4a2bd96d",
-    "BLACKLIST_ROLE": "0x22435ed027edf5f902dc0093fbc24cdb50c05b5fd5f311b78c67c1cbaff60e13",
-    "DEFAULT_ADMIN_ROLE": "0x1effbbff9c66c5e59634f24fe842750c60d18891155c32dd155fc2d661a4c86d",
-    "DOMAIN_SEPARATOR": "0x5dae01a50c13cd5552b17e2e742678152a2bd272063ae85218fa1cda91353a79",
-    "MINTER_ROLE": "0x9f2df0fed2c77648de5860a4cc508cd0818c85b8b8a1ab4ceeef8d981c8956a6",
-    "PAUSER_ROLE": "0x65d7a28e3265b37a6474929f336521b332c1681b933f6cb9f3376673440d862a",
-    "UPGRADER_ROLE": "0x189ab7a9244df0848122154315af71fe140f3db0fe014031783b0946b8c9d2e3",
-    "UPGRADE_INTERFACE_VERSION": "0x56c66b2cbf206f146f5fb80dadf1a855a6a375d07396966e8f1fa6b03f61023a"
+    "config": {
+      "coin_name": "ETH_USDV",
+      "name": "USD Vault",
+      "symbol": "USDV",
+      "address": "0x2fb07c66479cc5d45f8ca2db386b400453d78983",
+      "decimals": 6,
+      "chain": "ETHEREUM",
+      "network": "sepolia",
+      "BLACKLIST_ADMIN_ROLE": "0x750555ed2187fef9a15b1b2d80b65634c266437a86c68f049ea8b5da4a2bd96d",
+      "BLACKLIST_ROLE": "0x22435ed027edf5f902dc0093fbc24cdb50c05b5fd5f311b78c67c1cbaff60e13",
+      "DEFAULT_ADMIN_ROLE": "0x1effbbff9c66c5e59634f24fe842750c60d18891155c32dd155fc2d661a4c86d",
+      "DOMAIN_SEPARATOR": "0x5dae01a50c13cd5552b17e2e742678152a2bd272063ae85218fa1cda91353a79",
+      "MINTER_ROLE": "0x9f2df0fed2c77648de5860a4cc508cd0818c85b8b8a1ab4ceeef8d981c8956a6",
+      "PAUSER_ROLE": "0x65d7a28e3265b37a6474929f336521b332c1681b933f6cb9f3376673440d862a",
+      "UPGRADER_ROLE": "0x189ab7a9244df0848122154315af71fe140f3db0fe014031783b0946b8c9d2e3",
+      "UPGRADE_INTERFACE_VERSION": "0x56c66b2cbf206f146f5fb80dadf1a855a6a375d07396966e8f1fa6b03f61023a"
+    },
+    "safe": "{\"version\":\"3.0\",\"data\":{\"addressBook\":{\"11155111\":{\"0xd1Bacd07414C51aA16f4480B80f65a51d67D8fEe\":\"Marvelous Sepolia Safe\",\"0x941229dcf9f9C5dBF32bbB71dFf31CA0403e51d6\":\"test-51d6\",\"0x800625a45CE1B9af0f74DDdD19413D08C40c0006\":\"test-ledger\"}},\"addedSafes\":{\"11155111\":{\"0xd1Bacd07414C51aA16f4480B80f65a51d67D8fEe\":{\"owners\":[{\"value\":\"0x564dBD304d118014d6F07d75d2d159F52d8deA06\"}],\"threshold\":1}}},\"settings\":{\"currency\":\"usd\",\"tokenList\":\"TRUSTED\",\"hiddenTokens\":{},\"hideSuspiciousTransactions\":true,\"shortName\":{\"copy\":true,\"qr\":true},\"theme\":{},\"env\":{\"rpc\":{},\"tenderly\":{\"url\":\"\",\"accessToken\":\"\"}},\"signing\":{\"onChainSigning\":false,\"blindSigning\":false},\"transactionExecution\":true},\"safeApps\":{\"11155111\":{\"pinned\":[],\"opened\":[145]}},\"undeployedSafes\":{},\"visitedSafes\":{\"11155111\":{\"0xd1Bacd07414C51aA16f4480B80f65a51d67D8fEe\":{\"lastVisited\":1747228029254}}}}}"
   },
   "message": "success"
 }
@@ -69,12 +72,24 @@ GET /api/[chain]/balanceOf/{contract}?address=
 | balance  | String |  |
 
 ```shell
-curl http://127.0.0.1:7001/api/eth/balanceOf/0x2fb07c66479cc5d45f8ca2db386b400453d78983?address=0x564dBD304d118014d6F07d75d2d159F52d8deA06 -X GET -H "Content-Type: application/json" | jq '.'
+curl http://127.0.0.1:7001/api/eth/balanceOf/0x2fb07c66479cc5d45f8ca2db386b400453d78983?address=0x564dBD304d118014d6F07d75d2d159F52d8deA06 \
+    -X GET -H "Content-Type: application/json"
 
 {
   "code": 0,
   "data": {
     "balance": "300999989"
+  },
+  "message": "success"
+}
+
+curl "http://127.0.0.1:20002/api/tron/balanceOf/TAET2R9VnVfKvDgzEbzAgxTkAfyMSzrHFx?address=TESzMLyDLcA9qqYt1fDqtJEoUf5ZBh17a5" \
+    -X GET -H "Content-Type: application/json"
+
+{
+  "code": 0,
+  "data": {
+    "balance": "123456789"
   },
   "message": "success"
 }
@@ -98,12 +113,24 @@ GET /api/[chain]/allowance/{contract}?owner=&spender=
 | allowance  | String |  |
 
 ```shell
-curl "http://127.0.0.1:7001/api/eth/allowance/0x2fb07c66479cc5d45f8ca2db386b400453d78983?owner=0x6625eE82631D9f8bba6cCeba123B341f4c748be8&spender=0x564dBD304d118014d6F07d75d2d159F52d8deA06" -X GET -H "Content-Type: application/json" | jq '.'
+curl "http://127.0.0.1:7001/api/eth/allowance/0x2fb07c66479cc5d45f8ca2db386b400453d78983?owner=0x6625eE82631D9f8bba6cCeba123B341f4c748be8&spender=0x564dBD304d118014d6F07d75d2d159F52d8deA06" \
+    -X GET -H "Content-Type: application/json" | jq '.'
 
 {
   "code": 0,
   "data": {
     "allowance": "9876555"
+  },
+  "message": "success"
+}
+
+curl "http://127.0.0.1:20002/api/tron/allowance/TAET2R9VnVfKvDgzEbzAgxTkAfyMSzrHFx?owner=TGGErSQZj8xogFrrLn3VikvyUhP9KhKaEL&spender=TESzMLyDLcA9qqYt1fDqtJEoUf5ZBh17a5" \
+    -X GET -H "Content-Type: application/json" | jq '.'
+
+{
+  "code": 0,
+  "data": {
+    "allowance": "0"
   },
   "message": "success"
 }
