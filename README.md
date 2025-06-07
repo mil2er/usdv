@@ -69,12 +69,24 @@ GET /api/[chain]/balanceOf/{contract}?address=
 | balance  | String |  |
 
 ```shell
-curl http://127.0.0.1:7001/api/eth/balanceOf/0x2fb07c66479cc5d45f8ca2db386b400453d78983?address=0x564dBD304d118014d6F07d75d2d159F52d8deA06 -X GET -H "Content-Type: application/json" | jq '.'
+curl http://127.0.0.1:7001/api/eth/balanceOf/0x2fb07c66479cc5d45f8ca2db386b400453d78983?address=0x564dBD304d118014d6F07d75d2d159F52d8deA06 \
+    -X GET -H "Content-Type: application/json"
 
 {
   "code": 0,
   "data": {
     "balance": "300999989"
+  },
+  "message": "success"
+}
+
+curl "http://127.0.0.1:20002/api/tron/balanceOf/TAET2R9VnVfKvDgzEbzAgxTkAfyMSzrHFx?address=TESzMLyDLcA9qqYt1fDqtJEoUf5ZBh17a5" \
+    -X GET -H "Content-Type: application/json"
+
+{
+  "code": 0,
+  "data": {
+    "balance": "123456789"
   },
   "message": "success"
 }
