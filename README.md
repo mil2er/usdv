@@ -346,10 +346,20 @@ curl -X GET http://127.0.0.1:20002/api/eth/statistic/circulatingSupply     -H "A
 
 {
   "code": 0,
-  "data": {
-    "circulatingSupply": "100000000000000",
-    "day": "2025-01-01"
-  },
+  "data": [
+    {
+      "day": "2025-01-01",
+      "circulatingSupply": "100000000000"
+    },
+    {
+      "day": "2025-01-02",
+      "circulatingSupply": "200000000000"
+    },
+    {
+      "day": "2025-01-03",
+      "circulatingSupply": "400000000000"
+    }
+  ],
   "message": "success"
 }
 ```
@@ -372,10 +382,20 @@ curl -X GET http://127.0.0.1:20002/api/eth/statistic/transfers     -H "Accept: a
 
 {
   "code": 0,
-  "data": {
-    "day": "2025-01-01",
-    "transfers": "100000000000000"
-  },
+  "data": [
+    {
+      "day": "2025-01-01",
+      "transfers": "100000000000"
+    },
+    {
+      "day": "2025-01-02",
+      "transfers": "200000000000"
+    },
+    {
+      "day": "2025-01-03",
+      "transfers": "400000000000"
+    }
+  ],
   "message": "success"
 }
 ```
@@ -398,10 +418,20 @@ curl -X GET http://127.0.0.1:20002/api/eth/statistic/holders     -H "Accept: app
 
 {
   "code": 0,
-  "data": {
-    "day": "2025-01-01",
-    "holders": "100000000000000"
-  },
+  "data": [
+    {
+      "day": "2025-01-01",
+      "holders": "100000000000"
+    },
+    {
+      "day": "2025-01-02",
+      "holders": "200000000000"
+    },
+    {
+      "day": "2025-01-03",
+      "holders": "400000000000"
+    }
+  ],
   "message": "success"
 }
 ```
