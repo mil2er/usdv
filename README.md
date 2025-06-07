@@ -110,12 +110,24 @@ GET /api/[chain]/allowance/{contract}?owner=&spender=
 | allowance  | String |  |
 
 ```shell
-curl "http://127.0.0.1:7001/api/eth/allowance/0x2fb07c66479cc5d45f8ca2db386b400453d78983?owner=0x6625eE82631D9f8bba6cCeba123B341f4c748be8&spender=0x564dBD304d118014d6F07d75d2d159F52d8deA06" -X GET -H "Content-Type: application/json" | jq '.'
+curl "http://127.0.0.1:7001/api/eth/allowance/0x2fb07c66479cc5d45f8ca2db386b400453d78983?owner=0x6625eE82631D9f8bba6cCeba123B341f4c748be8&spender=0x564dBD304d118014d6F07d75d2d159F52d8deA06" \
+    -X GET -H "Content-Type: application/json" | jq '.'
 
 {
   "code": 0,
   "data": {
     "allowance": "9876555"
+  },
+  "message": "success"
+}
+
+curl "http://127.0.0.1:20002/api/tron/allowance/TAET2R9VnVfKvDgzEbzAgxTkAfyMSzrHFx?owner=TGGErSQZj8xogFrrLn3VikvyUhP9KhKaEL&spender=TESzMLyDLcA9qqYt1fDqtJEoUf5ZBh17a5" \
+    -X GET -H "Content-Type: application/json" | jq '.'
+
+{
+  "code": 0,
+  "data": {
+    "allowance": "0"
   },
   "message": "success"
 }
