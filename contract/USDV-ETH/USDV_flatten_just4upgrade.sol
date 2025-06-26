@@ -6900,7 +6900,7 @@ contract USDV is Initializable, ERC20Upgradeable, ERC20BurnableUpgradeable, ERC2
     }
 
     function decimals() public view virtual override(ERC20Upgradeable) returns (uint8) {
-        return 6;
+        return 7;
     }
 
 }
