@@ -52,6 +52,30 @@ curl http://127.0.0.1:20002/api/eth/config -X GET -H "Content-Type: application/
   },
   "message": "success"
 }
+
+curl "http://127.0.0.1:20002/stable/tron/config" -X GET -H "Content-Type: application/json" | jq '.'
+
+{
+  "code": 0,
+  "data": {
+    "config": {
+      "coin_name": "TRON_USDV",
+      "name": "USD Vault",
+      "symbol": "USDV",
+      "address": "TAW5ffPAh4CMAc5ybKVwKShFTELW8T4c7M",
+      "decimals": 6,
+      "chain": "TRON",
+      "network": "nile",
+      "BLACKLIST_ADMIN_ROLE": "0x750555ed2187fef9a15b1b2d80b65634c266437a86c68f049ea8b5da4a2bd96d",
+      "BLACKLIST_ROLE": "0x22435ed027edf5f902dc0093fbc24cdb50c05b5fd5f311b78c67c1cbaff60e13",
+      "DEFAULT_ADMIN_ROLE": "0x1effbbff9c66c5e59634f24fe842750c60d18891155c32dd155fc2d661a4c86d",
+      "MINTER_ROLE": "0x9f2df0fed2c77648de5860a4cc508cd0818c85b8b8a1ab4ceeef8d981c8956a6",
+      "PAUSER_ROLE": "0x65d7a28e3265b37a6474929f336521b332c1681b933f6cb9f3376673440d862a"
+    },
+    "safe": "TESzMLyDLcA9qqYt1fDqtJEoUf5ZBh17a5"
+  },
+  "message": "success"
+}
 ```
 
 ## 地址余额查询
