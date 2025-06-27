@@ -48,7 +48,7 @@ curl http://127.0.0.1:20002/api/eth/config -X GET -H "Content-Type: application/
       "UPGRADER_ROLE": "0x189ab7a9244df0848122154315af71fe140f3db0fe014031783b0946b8c9d2e3",
       "UPGRADE_INTERFACE_VERSION": "0x56c66b2cbf206f146f5fb80dadf1a855a6a375d07396966e8f1fa6b03f61023a"
     },
-    "safe": "{\"version\":\"3.0\",\"data\":{\"addressBook\":{\"11155111\":{\"0xd1Bacd07414C51aA16f4480B80f65a51d67D8fEe\":\"Marvelous Sepolia Safe\",\"0x941229dcf9f9C5dBF32bbB71dFf31CA0403e51d6\":\"test-51d6\",\"0x800625a45CE1B9af0f74DDdD19413D08C40c0006\":\"test-ledger\"}},\"addedSafes\":{\"11155111\":{\"0xd1Bacd07414C51aA16f4480B80f65a51d67D8fEe\":{\"owners\":[{\"value\":\"0x564dBD304d118014d6F07d75d2d159F52d8deA06\"}],\"threshold\":1}}},\"settings\":{\"currency\":\"usd\",\"tokenList\":\"TRUSTED\",\"hiddenTokens\":{},\"hideSuspiciousTransactions\":true,\"shortName\":{\"copy\":true,\"qr\":true},\"theme\":{},\"env\":{\"rpc\":{},\"tenderly\":{\"url\":\"\",\"accessToken\":\"\"}},\"signing\":{\"onChainSigning\":false,\"blindSigning\":false},\"transactionExecution\":true},\"safeApps\":{\"11155111\":{\"pinned\":[],\"opened\":[145]}},\"undeployedSafes\":{},\"visitedSafes\":{\"11155111\":{\"0xd1Bacd07414C51aA16f4480B80f65a51d67D8fEe\":{\"lastVisited\":1747228029254}}}}}"
+    "safe": "0xd1Bacd07414C51aA16f4480B80f65a51d67D8fEe"
   },
   "message": "success"
 }
@@ -139,6 +139,43 @@ curl "http://127.0.0.1:20002/api/tron/allowance/TAET2R9VnVfKvDgzEbzAgxTkAfyMSzrH
 ## Safe 官方API 服务
 
 [https://docs.safe.global/core-api/transaction-service-reference/sepolia#Transactions](https://docs.safe.global/core-api/transaction-service-reference/sepolia#Transactions)
+
+## 获取Safe 多签账户信息
+
+GET /api/[chain]/safe/safes/{address}/
+
+```shell
+curl -X GET https://safe-transaction-sepolia.safe.global/api/v1/safes/0xd1Bacd07414C51aA16f4480B80f65a51d67D8fEe/ \
+        -H "Accept: application/json"\
+        -H "content-type: application/json"
+
+curl -X GET http://127.0.0.1:20002/api/eth/safe/safes/0xd1Bacd07414C51aA16f4480B80f65a51d67D8fEe/ \
+        -H "Accept: application/json"\
+        -H "content-type: application/json"
+
+{
+  "address": "0xd1Bacd07414C51aA16f4480B80f65a51d67D8fEe",
+  "nonce": "50",
+  "threshold": 2,
+  "owners": [
+    "0xa593A56C9bA0332FD31db973cac92aB58E0F09Ba",
+    "0xB9226f868a49AE36129D09ceD7F5990E16071A6d",
+    "0xfe966681e5c02f3995ac01F876525682A18b734b",
+    "0xeABa316B4BD973Ebb5B7f9D09D5B666FC15BB60E",
+    "0xb7424edef274B18Bf1b70d5e09bAC7A9503CA9F9",
+    "0x49970d53328eaA98527399f9FCA98AEE69C3e306",
+    "0x56a156cDa10C154a7D6E23F1B660ee314b785ae8",
+    "0x800625a45CE1B9af0f74DDdD19413D08C40c0006",
+    "0x941229dcf9f9C5dBF32bbB71dFf31CA0403e51d6",
+    "0x564dBD304d118014d6F07d75d2d159F52d8deA06"
+  ],
+  "masterCopy": "0x29fcB43b46531BcA003ddC8FCB67FFE91900C762",
+  "modules": [],
+  "fallbackHandler": "0xfd0732Dc9E303f09fCEf3a7388Ad10A83459Ec99",
+  "guard": "0x0000000000000000000000000000000000000000",
+  "version": "1.4.1+L2"
+}
+```
 
 ## 创建多签交易
 
