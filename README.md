@@ -283,6 +283,13 @@ curl "http://127.0.0.1:20002/api/tron/safe/safes/TESzMLyDLcA9qqYt1fDqtJEoUf5ZBh1
 
 POST /api/[chain]/safe/safes/{address}/multisig-transactions/
 
+```shell
+curl -XPOST --url http://127.0.0.1:20002/api/tron/safe/safes/xxx/multisig-transactions/ \
+        --header 'accept: application/json' \
+        --header 'content-type: application/json' \
+        --data '{"test":"multisig Tx"}'
+```
+
 ## 查询多签交易列表
 
 GET /api/[chain]/safe/safes/{address}/multisig-transactions/
@@ -295,9 +302,22 @@ POST /api/[chain]/safe/safes/{address}/multisig-transactions/estimations/
 
 DELETE /api/[chain]/safe/multisig-transactions/{txhash}/
 
+```shell
+curl -XDELETE --url http://127.0.0.1:20002/api/tron/safe/multisig-transactions/xxx/ \
+        --header 'accept: application/json' \
+        --header 'content-type: application/json' \
+        --data '{}'
+```
+
 ## 查询多签交易信息
 
 GET /api/[chain]/safe/multisig-transactions/{txhash}/
+
+```shell
+curl -XGET --url http://127.0.0.1:20002/api/tron/safe/multisig-transactions/xxx/ \
+        --header 'accept: application/json' \
+        --header 'content-type: application/json'
+```
 
 ## 确认多签交易
 
