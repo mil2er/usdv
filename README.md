@@ -205,54 +205,9 @@ curl https://nileapi.tronscan.org/api/security/sign/data?address=TESzMLyDLcA9qqY
 curl "http://127.0.0.1:20002/api/tron/safe/safes/TESzMLyDLcA9qqYt1fDqtJEoUf5ZBh17a5/" -X GET -H "Content-Type: application/json" | jq '.'
 
 {
-  "code": 0,
-  "data": {
-    "activePermissions": [
-      {
-        "id": 2,
-        "keys": [
-          {
-            "address": "TESzMLyDLcA9qqYt1fDqtJEoUf5ZBh17a5",
-            "weight": 1
-          },
-          {
-            "address": "TGGErSQZj8xogFrrLn3VikvyUhP9KhKaEL",
-            "weight": 2
-          },
-          {
-            "address": "TZ9sm7rugYRXGeX8d9LZ7DVHREL7AzDwVq",
-            "weight": 2
-          },
-          {
-            "address": "TWEjyqWsCdhQhgSZKBv2WNK1JCThvjQjwX",
-            "weight": 2
-          },
-          {
-            "address": "TNYimdCFKGpTcQFqifDsDTUhtefJTjKUMr",
-            "weight": 2
-          }
-        ],
-        "operations": "7fff1fc0033efb0f000000000000000000000000000000000000000000000000",
-        "permission_name": "active",
-        "threshold": 4,
-        "type": "Active"
-      }
-    ],
-    "multiSign": true,
-    "multiSignActivePermissionAddress": [
-      "TNYimdCFKGpTcQFqifDsDTUhtefJTjKUMr",
-      "TGGErSQZj8xogFrrLn3VikvyUhP9KhKaEL",
-      "TZ9sm7rugYRXGeX8d9LZ7DVHREL7AzDwVq",
-      "TWEjyqWsCdhQhgSZKBv2WNK1JCThvjQjwX"
-    ],
-    "multiSignOwnerPermissionAddress": [
-      "TNYimdCFKGpTcQFqifDsDTUhtefJTjKUMr",
-      "TGGErSQZj8xogFrrLn3VikvyUhP9KhKaEL",
-      "TZ9sm7rugYRXGeX8d9LZ7DVHREL7AzDwVq",
-      "TWEjyqWsCdhQhgSZKBv2WNK1JCThvjQjwX"
-    ],
-    "multiSignWitnessPermissionAddress": [],
-    "ownerPermission": {
+  "activePermissions": [
+    {
+      "id": 2,
       "keys": [
         {
           "address": "TESzMLyDLcA9qqYt1fDqtJEoUf5ZBh17a5",
@@ -275,11 +230,52 @@ curl "http://127.0.0.1:20002/api/tron/safe/safes/TESzMLyDLcA9qqYt1fDqtJEoUf5ZBh1
           "weight": 2
         }
       ],
-      "permission_name": "owner",
-      "threshold": 4
+      "operations": "7fff1fc0033efb0f000000000000000000000000000000000000000000000000",
+      "permission_name": "active",
+      "threshold": 4,
+      "type": "Active"
     }
-  },
-  "message": "success"
+  ],
+  "multiSign": true,
+  "multiSignActivePermissionAddress": [
+    "TNYimdCFKGpTcQFqifDsDTUhtefJTjKUMr",
+    "TGGErSQZj8xogFrrLn3VikvyUhP9KhKaEL",
+    "TZ9sm7rugYRXGeX8d9LZ7DVHREL7AzDwVq",
+    "TWEjyqWsCdhQhgSZKBv2WNK1JCThvjQjwX"
+  ],
+  "multiSignOwnerPermissionAddress": [
+    "TNYimdCFKGpTcQFqifDsDTUhtefJTjKUMr",
+    "TGGErSQZj8xogFrrLn3VikvyUhP9KhKaEL",
+    "TZ9sm7rugYRXGeX8d9LZ7DVHREL7AzDwVq",
+    "TWEjyqWsCdhQhgSZKBv2WNK1JCThvjQjwX"
+  ],
+  "multiSignWitnessPermissionAddress": [],
+  "ownerPermission": {
+    "keys": [
+      {
+        "address": "TESzMLyDLcA9qqYt1fDqtJEoUf5ZBh17a5",
+        "weight": 1
+      },
+      {
+        "address": "TGGErSQZj8xogFrrLn3VikvyUhP9KhKaEL",
+        "weight": 2
+      },
+      {
+        "address": "TZ9sm7rugYRXGeX8d9LZ7DVHREL7AzDwVq",
+        "weight": 2
+      },
+      {
+        "address": "TWEjyqWsCdhQhgSZKBv2WNK1JCThvjQjwX",
+        "weight": 2
+      },
+      {
+        "address": "TNYimdCFKGpTcQFqifDsDTUhtefJTjKUMr",
+        "weight": 2
+      }
+    ],
+    "permission_name": "owner",
+    "threshold": 4
+  }
 }
 ```
 
