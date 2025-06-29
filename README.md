@@ -160,9 +160,15 @@ curl "http://127.0.0.1:20002/api/tron/allowance/TAET2R9VnVfKvDgzEbzAgxTkAfyMSzrH
 }
 ```
 
-## Safe 官方API 服务
+## 多签官方API 服务
+
+以太坊多签相关文档
 
 [https://docs.safe.global/core-api/transaction-service-reference/sepolia#Transactions](https://docs.safe.global/core-api/transaction-service-reference/sepolia#Transactions)
+
+波场多签相关文档
+
+[https://docs.tronscan.org/api-endpoints/transactions-and-transfers](https://docs.tronscan.org/api-endpoints/transactions-and-transfers)
 
 ## 获取Safe 多签账户信息
 
@@ -293,6 +299,30 @@ curl -XPOST --url http://127.0.0.1:20002/api/tron/safe/safes/xxx/multisig-transa
 ## 查询多签交易列表
 
 GET /api/[chain]/safe/safes/{address}/multisig-transactions/
+
+## 查询所有已执行交易
+
+Returns all the executed transactions for a given Safe address.
+
+参考文档
+
+[https://docs.safe.global/core-api/transaction-service-reference/sepolia#List-Transactions](https://docs.safe.global/core-api/transaction-service-reference/sepolia#List-Transactions)
+
+GET /api/[chain]/safe/safes/{address}/all-transactions/
+
+- req
+
+|  arg name   | type  | desc |
+|  ----  | ----  | ---- |
+| ordering | String | 按照指定字段排序 |
+| limit    | int | 每次请求返回数据项数量 |
+| offset   | int | 从记录索引指定位置开始读取 |
+
+```shell
+curl -X GET "http://127.0.0.1:20002/api/eth/safe/safes/0xd1Bacd07414C51aA16f4480B80f65a51d67D8fEe/all-transactions/?ordering=timestamp&limit=3&offset=0" \
+    -H "Accept: application/json" \
+    -H "content-type: application/json"
+```
 
 ## 估算多签交易费用
 
