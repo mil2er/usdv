@@ -1,0 +1,18 @@
+[Unit]
+Description=startup kmc service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=ubuntu
+Group=ubuntu
+Restart=on-failure
+RestartSec=10
+WorkingDirectory=/home/ubuntu/.kmc
+ExecStart=/home/ubuntu/.kmc/bin/kmc start \
+    -l :21002 \
+    --home /home/ubuntu/.kmc/ \
+    -m debug
+
+[Install]
+WantedBy=multi-user.target

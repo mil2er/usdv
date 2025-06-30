@@ -1,0 +1,107 @@
+#DB: root:123456@tcp(127.0.0.1:3306)/rabbit
+DB: root:123456@tcp(127.0.0.1:3306)/statistic
+MQ:
+- #type: rabbitmq
+  type: no-rabbitmq
+  #connection: amqp://admin:91f03ca6dc4779b872004e4e6f7d6611@47.76.179.118:5672/instinct
+  connection: amqp://admin:91f03ca6dc4779b872004e4e6f7d6611@127.0.0.1:5672/instinct
+  exchange_name: exchange.wallet
+  queue_name: queue.wallet
+  consume_tag: walletConsumer
+  ssl_enable: false
+  routing_key_prefix: wallet.
+CACHE: redis
+APIs:
+  tron:
+  - https://nile.trongrid.io
+  ethereum:
+  - https://sepolia.infura.io/v3/8d326d9af14e4e72aff937695464ca1d
+  - https://sepolia.infura.io/v3/63a7107af662477999d86e6e41a6bf18
+  - https://sepolia.infura.io/v3/12c28c4d09be48cda69287ab9c32c0fa
+  - https://sepolia.infura.io/v3/ac53f3bf77a74d8cb0935d8435a7e4f4
+  - https://sepolia.infura.io/v3/308d059a17e04a968801c5269c5b0ee5
+  #- https://***
+nodes: 
+- http://127.0.0.1:20004/
+- http://127.0.0.1:30004/
+- http://127.0.0.1:40004/
+block:
+  tron:
+  - sync_height: -53931190
+    confirm: 30
+    step: 50
+    interval: 30000
+  ethereum:
+  - sync_height: -7542585
+    confirm: 30
+    step: 10
+    interval: 10000
+withdraw:
+  queue: 3
+  tron:
+  - TJ3xHyLKbwUbqQC7qYYokzsCAv9egeB9qM
+  #- TP8RGpZiU5tC1PfC76U2etkCGBHtyuDQ2c
+  ethereum:
+  - 0xD2E846f5eE2DfD46584E07a4bfb5CDf2dF8A8A58
+assets:
+- coin: TRON_USDT
+  description: TRON_USDT
+  symbol: USDT
+  address: TXYZopYRdj2D9XRtbG411XZZ3kM5VkAeBf
+  decimals: 6
+  chain: TRON
+  network: nile
+  type: trc20
+  #type: trc21
+  #type: trc10
+  #type: trc721
+  can_deposit: true
+  can_withdraw: true
+  require_memo: false
+  confirming_threshold: 0
+  dust_threshold: 0
+- coin: TRON_TRX
+  description: TRON_TRX
+  symbol: TRX
+  decimals: 6
+  chain: TRON
+  network: nile
+  type: native
+  #type: erc20
+  #type: erc721
+- coin: ETH_USDT
+  description: ETH_USDT
+  symbol: USDT
+  address: 0x8A1530258508268836fe9Ba65b537E0d88e9aCDa
+  decimals: 6
+  chain: ETHEREUM
+  network: sepolia
+  type: erc20
+  can_deposit: true
+  can_withdraw: true
+  require_memo: false
+  confirming_threshold: 0
+  dust_threshold: 0
+- coin: ETH_USDV
+  address: 0x2fb07c66479cc5d45f8ca2db386b400453d78983
+  chain: ETHEREUM
+  network: sepolia
+  type: erc20
+  can_deposit: true
+  can_withdraw: true
+  require_memo: false
+  confirming_threshold: 0
+  dust_threshold: 0
+- coin: TRON_USDV
+  address: TAW5ffPAh4CMAc5ybKVwKShFTELW8T4c7M
+  chain: TRON
+  network: nile
+  type: trc20
+  can_deposit: true
+  can_withdraw: true
+  require_memo: false
+  confirming_threshold: 0
+  dust_threshold: 0
+#safe_multi_sign_eth: 0xBB11487A8B9229eFfe5a5C49A3e62A0419C411d3
+safe_multi_sign_eth: 0xf38F0672ce706E60a3E5268faf4618BDe5503BD6
+safe_multi_sign_tron: TESzMLyDLcA9qqYt1fDqtJEoUf5ZBh17a5
